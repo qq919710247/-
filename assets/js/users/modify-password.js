@@ -26,6 +26,9 @@ $(function () {
                     return layer.msg('修改密码失败')
                 }
                 layer.msg('修改密码成功')
+
+                //清楚token令牌
+                localStorage.removeItem('token')
             })
     })
 
