@@ -1,0 +1,23 @@
+body{
+    padding: 15px;
+    background-color: #f2f3f5;
+}
+
+.add-btn{
+    float: right;
+    margin-top: 10px;
+}
+
+.layui-form{
+    padding-top: 25px;
+    padding-right: 30px;
+}
+
+.tip{
+    margin-left: 96px;
+    margin-top: 20px;
+}
+
+.del-btns{
+    margin-top: 50px;
+}
