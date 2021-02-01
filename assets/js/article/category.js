@@ -20,7 +20,7 @@ $(function () {
 
     getCateList()
 
-    //添加按钮事件
+    //绑定添加按钮点击事件
     var index;
     $('.add-btn').click(function () {
         index = layer.open({
@@ -54,7 +54,7 @@ $(function () {
             })
     })
 
-    //监听编辑表单提交事件
+    //监听编辑表单点击事件
     $(document).on('click', '.edit-btn', function () {
         // console.log(123);
         index = layer.open({
@@ -79,25 +79,25 @@ $(function () {
                 form.val('edit-form', res.data)
             })
 
-        //发送请求到服务器
-        $(document).on('submit', '.edit-form', function (e) {
-            e.preventDefault()
+    })
 
-            axios.post('/my/article/updatecate', $(this).serialize())
-                .then(res => {
-                    if (res.status !== 0) {
-                        return layer.msg('修改失败!')
-                    }
-                    // console.log(res);
-                    getCateList()
+    //监听编辑表单提交事件
+    $(document).on('submit', '.edit-form', function (e) {
+        e.preventDefault()
 
-                    layer.msg('修改成功!')
+        axios.post('/my/article/updatecate', $(this).serialize())
+            .then(res => {
+                if (res.status !== 0) {
+                    return layer.msg('修改失败!')
+                }
+                // console.log(res);
+                getCateList()
 
-                    //成功之后关闭按钮
-                    layer.close(index)
-                })
+                layer.msg('修改成功!')
 
-        })
+                //成功之后关闭按钮
+                layer.close(index)
+            })
 
     })
 
@@ -111,7 +111,7 @@ $(function () {
             .then(res => {
                 // console.log(res);
 
-                index = layer.confirm('你确认删除?', { icon: 2, title: '提示' }, function (index) {
+                index = layer.confirm('确认删除?', { icon: 2, title: '提示' }, function (index) {
                     if (res.status == 1) {
                         return layer.msg('删除失败，该项无法删除!')
                     } else if (res.status !== 0) {
