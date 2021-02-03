@@ -75,7 +75,7 @@
         <tr>
             <td>{{$value.title}}</td>
             <td>{{$value.cate_name}}</td>
-            <td>{{$value.pub_date}}</td>
+            <td>{{$value.pub_date | dateFormat}}</td>
             <td>{{$value.state}}</td>
             <td>
                 <button data-id="{{$value.Id}}" type="button"
@@ -87,6 +87,7 @@
         {{/each data}}
     </script>
 
+    <script src="../assets/lib/moment.js"></script>
     <script src="../assets/lib/template-web.js"></script>
     <script src="../assets/lib/tinymce/tinymce.min.js"></script>
     <script src="../assets/lib/tinymce/tinymce_setup.js"></script>

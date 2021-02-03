@@ -1,6 +1,7 @@
 $(function () {
     const { form, laypage } = layui
 
+    //渲染页面
     function getCateList() {
         axios.get('/my/article/cates')
             .then(res => {
@@ -28,6 +29,7 @@ $(function () {
         state: '',
     }
 
+
     function renderTable() {
         axios.get('/my/article/list', { params: query })
             .then(res => {
@@ -35,6 +37,11 @@ $(function () {
                 if (res.status !== 0) {
                     return layer.msg('获取失败!')
                 }
+
+                //注册过滤器
+                template.defaults.imports.dateFormat = function (date) {
+                    return moment(date).format('YYYY/MM/DD HH:mm:ss')
+                };
 
                 const htmlStr = template('tpl', res)
                 // console.log(htmlStr); 
@@ -81,6 +88,9 @@ $(function () {
         query.cate_id = cate_id
         query.state = state
 
+        //发送请求页码值改为1
+        query.pagenum = 1
+
         renderTable()
     })
 
@@ -111,4 +121,14 @@ $(function () {
 
             })
     })
+
+    //编辑按钮
+    $(document).on('click', '.edit-btn', function () {
+        const id = $(this).data('id')
+
+        location.href = `./edit.html?id=${id}`
+        window.parent.$('.layui-this').next().addClass('layui-this').siblings().removeClass('layui-this')
+
+    })
+
 })
